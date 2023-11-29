@@ -1,0 +1,2 @@
+INSERT INTO exchange_rate VALUES (1, 'USD/RUB', 88.70000, '2023-11-29');
+INSERT INTO exchange_rate VALUES (2, 'USD/KZT', 459.07501, '2023-11-29');
