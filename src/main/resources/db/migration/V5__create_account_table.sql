@@ -4,5 +4,6 @@ CREATE TABLE account
     account_number BIGINT unique,
     current_limit NUMERIC(10,2),
     monthly_limit NUMERIC(10,2),
-    limit_setting_date DATE
+    limit_setting_date timestamp with time zone,
+    currency_limit VARCHAR(30)
 )

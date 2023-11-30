@@ -16,5 +16,6 @@ public interface ExchangeCurrencyMapper {
     ExchangeCurrency toExchangeCurrency (ExchangeCurrencyDto exchangeCurrencyDto);
 
     @Mapping(target = "currencyCode", source = "symbol")
+    @Mapping(target = "date", ignore = true)
     ExchangeCurrencyDto toExchangeCurrencyDto (ExchangeClientResponseDto exchangeClientResponseDto);
 }

@@ -6,7 +6,7 @@ import org.hibernate.Hibernate;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @NoArgsConstructor
@@ -15,7 +15,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
 @Entity
 @Table(name = "transaction")
 public class Transaction {
@@ -23,8 +22,8 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "account_number")
+    @OneToOne
+    @JoinColumn(name = "account_from")
     private Account account;
     private BigInteger accountTo;
     private String currency;
@@ -33,7 +32,7 @@ public class Transaction {
     @OneToOne
     @JoinColumn(name = "expense_category_id")
     private ExpenseCategory expenseCategory;
-    private LocalDate date;
+    private LocalDateTime date;
     private Boolean isLimitExceed;
 
     @Override
