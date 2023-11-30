@@ -1,6 +1,7 @@
 package com.example.bankingapp.services.impl;
 
 import com.example.bankingapp.exceptions.EntityNotFoundException;
+import com.example.bankingapp.exceptions.IncorrectLimitException;
 import com.example.bankingapp.models.entity.Account;
 import com.example.bankingapp.repositories.AccountRepository;
 import com.example.bankingapp.services.AccountService;
@@ -26,7 +27,7 @@ public class AccountServiceImpl implements AccountService {
         if (!isAccountPresent(accountNumber)) {
             throw new EntityNotFoundException("There is no account with such account number.");
         } else if (!isLimitValid(limit)) {
-            throw new IllegalArgumentException("The limit should be positive.");
+            throw new IncorrectLimitException("The limit should be positive.");
         } else {
             Account currentAccount = accountRepository.findByAccountNumber(accountNumber);
             BigDecimal temp = limit.subtract(currentAccount.getCurrentLimit());

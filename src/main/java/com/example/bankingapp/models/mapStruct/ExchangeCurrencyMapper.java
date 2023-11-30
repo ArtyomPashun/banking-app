@@ -9,13 +9,13 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface ExchangeCurrencyMapper {
 
-    ExchangeCurrencyDto toExchangeCurrencyDto (ExchangeCurrency exchangeCurrency);
+    ExchangeCurrencyDto toExchangeCurrencyDto(ExchangeCurrency exchangeCurrency);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "date", ignore = true)
-    ExchangeCurrency toExchangeCurrency (ExchangeCurrencyDto exchangeCurrencyDto);
+    ExchangeCurrency toExchangeCurrency(ExchangeCurrencyDto exchangeCurrencyDto);
 
     @Mapping(target = "currencyCode", source = "symbol")
     @Mapping(target = "date", ignore = true)
-    ExchangeCurrencyDto toExchangeCurrencyDto (ExchangeClientResponseDto exchangeClientResponseDto);
+    ExchangeCurrencyDto toExchangeCurrencyDto(ExchangeClientResponseDto exchangeClientResponseDto);
 }

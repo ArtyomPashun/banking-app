@@ -1,5 +1,7 @@
 package com.example.bankingapp.services.impl;
 
+import com.example.bankingapp.exceptions.IncorrectCurrencyException;
+import com.example.bankingapp.exceptions.IncorrectLimitException;
 import com.example.bankingapp.models.entity.Account;
 import com.example.bankingapp.models.entity.ExpenseCategory;
 import com.example.bankingapp.models.entity.Transaction;
@@ -49,10 +51,10 @@ public class TransactionServiceImpl implements TransactionService {
                 BigDecimal sumInUSD = transaction.getSum().divide(currencyRate, 2, RoundingMode.HALF_UP);
                 saveAccountAndTransactionEntity(sumInUSD, account, transaction, expenseCategory);
             } else {
-                throw new IllegalArgumentException("There is no opportunity to make transaction in such currency.");
+                throw new IncorrectCurrencyException("There is no opportunity to make transaction in such currency.");
             }
         } else {
-            throw new IllegalArgumentException("There is no such account or transaction limit less 0.");
+            throw new IncorrectLimitException("There is no such account or transaction limit less 0.");
         }
     }
 

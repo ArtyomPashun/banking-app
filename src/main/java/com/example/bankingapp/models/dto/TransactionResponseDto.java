@@ -1,5 +1,6 @@
 package com.example.bankingapp.models.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Schema(description = "Transaction Response Dto")
 public class TransactionResponseDto {
     private BigInteger accountFrom;
     private BigInteger accountTo;
