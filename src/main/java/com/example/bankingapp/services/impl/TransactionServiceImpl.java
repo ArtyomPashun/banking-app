@@ -76,9 +76,9 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     @Transactional
     public void saveAccountAndTransactionEntity(BigDecimal transactionSum, Account account, Transaction transaction, ExpenseCategory expenseCategory) {
-        BigDecimal currentAccountLimit = account.getCurrentLimit();
+        BigDecimal currentAccountLimit = account.getMonthlyLimit();
         boolean flag = currentAccountLimit.compareTo(transactionSum) >= 0;
-        account.setMonthlyLimit(account.getCurrentLimit().subtract(transactionSum));
+        account.setMonthlyLimit(currentAccountLimit.subtract(transactionSum));
         transaction.setIsLimitExceed(!flag);
         transaction.setDate(LocalDateTime.now());
         transaction.setAccount(account);
