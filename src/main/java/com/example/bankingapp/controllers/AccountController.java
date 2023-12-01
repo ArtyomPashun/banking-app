@@ -2,6 +2,7 @@ package com.example.bankingapp.controllers;
 
 import com.example.bankingapp.services.AccountService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -32,7 +33,10 @@ public class AccountController {
             @ApiResponse(responseCode = "400", description = "Incorrect limit", content = @Content),
             @ApiResponse(responseCode = "404", description = "Account not found", content = @Content),
             @ApiResponse(responseCode = "500", description = "Server Error", content = @Content)})
-    public ResponseEntity<String> updateAccountLimit(@RequestParam BigInteger accountNumber, @RequestParam BigDecimal limit) {
+    public ResponseEntity<String> updateAccountLimit(@Parameter(name = "accountNumber", description = "Enter accountNumber", example = "1111111111")
+                                                     @RequestParam BigInteger accountNumber,
+                                                     @Parameter(name = "limit", description = "Enter new limit in USD", example = "2000")
+                                                     @RequestParam BigDecimal limit) {
         log.info("AccountController. PatchMethod 'updateAccountLimit'. @RequestParam accountNumber {}, limit {} ",
                 accountNumber, limit);
         accountService.updateAccountLimit(accountNumber, limit);

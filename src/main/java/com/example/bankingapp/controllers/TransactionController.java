@@ -7,6 +7,7 @@ import com.example.bankingapp.models.dto.TransactionResponseDto;
 import com.example.bankingapp.models.mapStruct.TransactionMapper;
 import com.example.bankingapp.services.TransactionService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -53,7 +54,8 @@ public class TransactionController {
             @ApiResponse(responseCode = "200", content = {@Content(mediaType = "application/json",
                     schema = @Schema(implementation = TransactionResponseDto.class))}),
             @ApiResponse(responseCode = "500", description = "Server Error", content = @Content)})
-    public ResponseEntity<List<TransactionResponseDto>> getAllTransactions(@RequestParam BigInteger accountNumber) {
+    public ResponseEntity<List<TransactionResponseDto>> getAllTransactions(@Parameter(name = "accountNumber", description = "Enter accountNumber", example = "1111111111")
+                                                                           @RequestParam BigInteger accountNumber) {
         log.info("Get all transactions by {}", accountNumber);
         return ResponseEntity.ok(
                 transactionMapper.toListTransactionResponseDto(transactionService.getAllTransactions(accountNumber)));
@@ -66,7 +68,8 @@ public class TransactionController {
             @ApiResponse(responseCode = "200", content = {@Content(mediaType = "application/json",
                     schema = @Schema(implementation = TransactionResponseDto.class))}),
             @ApiResponse(responseCode = "500", description = "Server Error", content = @Content)})
-    public ResponseEntity<List<TransactionResponseDto>> getAllTransactionsWithExceedLimit(@RequestParam BigInteger accountNumber) {
+    public ResponseEntity<List<TransactionResponseDto>> getAllTransactionsWithExceedLimit(@Parameter(name = "accountNumber", description = "Enter accountNumber", example = "1111111111")
+                                                                                          @RequestParam BigInteger accountNumber) {
         log.info("Get all transactions with exceed limits by {}", accountNumber);
         return ResponseEntity.ok(
                 transactionMapper.toListTransactionResponseDto(transactionService.getAllTransactionsWithExceedLimit(accountNumber)));

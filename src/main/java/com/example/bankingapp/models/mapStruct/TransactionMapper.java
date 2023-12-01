@@ -22,7 +22,7 @@ public interface TransactionMapper {
     @Mapping(target = "expenseCategory", source ="expenseCategory.name")
     @Mapping(target = "limit", source ="account.monthlyLimit")
     @Mapping(target = "limitDate", source ="account.limitSettingDate")
-    @Mapping(target = "limitCurrency", source ="account.limitSettingDate")
+    @Mapping(target = "limitCurrency", source ="account.currencyLimit")
     TransactionResponseDto toTransactionResponseDto(Transaction transaction);
 
     List<TransactionResponseDto> toListTransactionResponseDto (List<Transaction> list);

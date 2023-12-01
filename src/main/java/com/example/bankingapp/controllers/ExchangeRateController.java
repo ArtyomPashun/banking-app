@@ -4,6 +4,7 @@ import com.example.bankingapp.models.dto.ExchangeCurrencyDto;
 import com.example.bankingapp.models.mapStruct.ExchangeCurrencyMapper;
 import com.example.bankingapp.services.ExchangeCurrencyService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -34,7 +35,8 @@ public class ExchangeRateController {
                     schema = @Schema(implementation = ExchangeCurrencyDto.class))}),
             @ApiResponse(responseCode = "400", description = "Invalid currency code", content = @Content),
             @ApiResponse(responseCode = "500", description = "Server Error", content = @Content)})
-    public ResponseEntity<ExchangeCurrencyDto> getAllTransactions(@RequestParam String currency) {
+    public ResponseEntity<ExchangeCurrencyDto> getAllTransactions(@Parameter(name = "currency", description = "Enter USD/KZT or USD/RUB", example = "USD/KZT")
+                                                                  @RequestParam String currency) {
         log.info("Get exchange currency rate {}", currency);
         return ResponseEntity.ok(exchangeCurrencyMapper.toExchangeCurrencyDto(exchangeCurrencyService.getExchangeRate(currency)));
     }

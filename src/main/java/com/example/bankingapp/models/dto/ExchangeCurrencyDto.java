@@ -15,7 +15,10 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Schema(description = "Exchange Currency Dto")
 public class ExchangeCurrencyDto {
+    @Schema(name = "currencyCode", example = "USD/KZT")
     private String currencyCode;
+    @Schema(name = "rate", example = "460.00000")
     private BigDecimal rate;
+    @Schema(name = "date", example = "2023-11-30")
     private LocalDate date;
 }

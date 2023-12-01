@@ -15,9 +15,14 @@ import java.math.BigInteger;
 @NoArgsConstructor
 @Schema(description = "Transaction Request Dto")
 public class TransactionRequestDto {
+    @Schema(name = "accountFrom", example = "1111111111")
     private BigInteger accountFrom;
+    @Schema(name = "accountTo", example = "1010101011")
     private BigInteger accountTo;
+    @Schema(name = "currency", example = "USD")
     private String currency;
+    @Schema(name = "sum", example = "100")
     private BigDecimal sum;
+    @Schema(name = "expenseCategory", example = "services")
     private String expenseCategory;
 }
